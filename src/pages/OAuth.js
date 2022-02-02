@@ -29,7 +29,7 @@ function OAuth() {
 
   return (
     <BtnWrap>
-      <KakaoLogin onClick={kakaoAuth} />
+      <KakaoLogin />
       {/* <OauthBtnKakao ></OauthBtnKakao> */}
       {/* <OauthBtnNaver onClick={naverAuth}></OauthBtnNaver> */}
     </BtnWrap>

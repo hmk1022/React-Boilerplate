@@ -71,13 +71,20 @@ const loginWithKakao2 = () => {
 };
 
 export default function KakaoLogin() {
-  const dispatch = useDispatch();
 
-  function loginWithKakao() {
-    console.log("리다이렉트 ::: ", process.env.REACT_APP_REDIRECT_URL);
-    window.Kakao.Auth.authorize({
+  async function loginWithKakao() {
+    
+    await window.Kakao.Auth.authorize({
       redirectUri: process.env.REACT_APP_REDIRECT_URL,
     });
+
+    const redirectUri = window.location.href.replace(/oauth/g, "");
+    
+    const res = await customAxios.post("/login/getKakaoAuthUrl", {
+      redirectUri: redirectUri,
+    });
+    console.log("소셜로그인 res : ", res.data);
+    window.location.href = res.data;
   }
 
   return (
